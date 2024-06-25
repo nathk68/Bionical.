@@ -3,19 +3,16 @@ import { Box, Button, Grid, TextField, Typography, Link, Paper, IconButton, Tool
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import NavBar from './Components/NavBar';
+import FileInfo from './Components/FileInfo';
 import { convertToBionicReading } from '../utils/bionicReading';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import FileInfo from './Components/FileInfo';
 import { pdfjs, Document, Page } from 'react-pdf';
-import '../pdf.worker';
 
-// import '@react-pdf-viewer/core/lib/styles/index.css';
-// import '@react-pdf-viewer/highlight/lib/styles/index.css';
-// import '@react-pdf-viewer/text/lib/styles/index.css';
-// import '@react-pdf-viewer/zoom/lib/styles/index.css';
+// Set workerSrc to the local path of the pdf.worker.js file
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 
 const Home: React.FC = () => {

@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -319,6 +317,7 @@ module.exports = function (webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        'pdfjs-dist/build/pdf.worker': path.join(__dirname, 'node_modules/pdfjs-dist/build/pdf.worker.min.js'),
       },
       plugins: [
         // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -345,6 +344,10 @@ module.exports = function (webpackEnv) {
           exclude: /@babel(?:\/|\\{1,2})runtime/,
           test: /\.(js|mjs|jsx|ts|tsx|css)$/,
           loader: require.resolve('source-map-loader'),
+        },
+        {
+          test: /pdf\.worker\.(min\.)?js$/,
+          use: 'worker-loader',
         },
         {
           // "oneOf" will traverse all following loaders until one will
